@@ -1,19 +1,18 @@
 import express, { Request, Response } from "express";
-import router from "./routes";
+import companyRouter from "./company-router";
+import userRouter from "./user-router";
+// import path from 'path';
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-// app.get("/", (_req: Request, res: Response) => {
-//   return res.send("Express Typescript on Vercel");
-// });
+// Serve client files
+// app.use(express.static(path.join(__dirname, '/../../client/public')));
 
-// app.get("/ping", (_req: Request, res: Response) => {
-//   return res.send("pong 🏓");
-// });
-
-app.use("/api", router);
+app.use("/api", companyRouter, userRouter);
 
 app.listen(port, () => {
   return console.log(`Server is listening on ${port}`);
 });
+
+export default app;

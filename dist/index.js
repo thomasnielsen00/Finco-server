@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const company_router_1 = __importDefault(require("./company-router"));
 const user_router_1 = __importDefault(require("./user-router"));
 // import path from 'path';
+require("dotenv").config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8080;
 // Serve client files

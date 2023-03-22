@@ -13,8 +13,14 @@ const pool = mysql2_1.default.createPool({
     //   socketPath: process.env.CLOUD_SQL_CONNECTION_NAME,
     // Reduce load on Google Cloud MySQL server
     connectionLimit: 5,
+    waitForConnections: true,
     // Convert MySQL boolean values to JavaScript boolean values
     typeCast: (field, next) => field.type == "TINY" && field.length == 1 ? field.string() == "1" : next(),
+});
+pool.getConnection((error, connection) => {
+    if (error)
+        console.log(error);
+    console.log("Connected successfully");
 });
 exports.default = pool;
 //# sourceMappingURL=mysql-pool.js.map

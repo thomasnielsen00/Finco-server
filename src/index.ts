@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import companyRouter from "./company-router";
 import userRouter from "./user-router";
 // import path from 'path';
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 8080;

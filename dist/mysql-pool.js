@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mysql2_1 = __importDefault(require("mysql2"));
 const pool = mysql2_1.default.createPool({
     host: "35.228.18.247",
-    user: "ADMIN",
+    user: "server",
     password: 'l@XuS-G~$a$Mp)"C',
     database: "finco-dev",
     // socketPath: process.env.CLOUD_SQL_CONNECTION_NAME,

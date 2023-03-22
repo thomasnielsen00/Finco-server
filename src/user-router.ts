@@ -10,6 +10,8 @@ export const salt = bcrypt.genSaltSync(10);
 //trenger denne å eksporteres?
 
 router.get("/users", (_request, response) => {
+  response.setHeader('Access-Control-Allow-Credentials', "true");
+  response.setHeader('Access-Control-Allow-Origin', '*');
   userService
     .getAllUsers()
     .then((rows) => response.send(rows))

@@ -62,7 +62,7 @@ class UserService {
      */
     createUser(full_name, email, password) {
         return new Promise((resolve, reject) => {
-            mysql_pool_1.default.query("INSERT INTO user SET full_name=?, email=?, password=?, phone_number=? ,risk_willingness=?, savings_from=?, savings_to=?", [full_name, email, password, "Not selected", "Not selected", 0, 0], (error, results) => {
+            mysql_pool_1.default.query("INSERT INTO user SET full_name=?, email=?, password=?, phone_number=? ,risk_willingness=?, savings_from=?, savings_to=?, admin=?", [full_name, email, password, "Not selected", "Not selected", 0, 0, 0], (error, results) => {
                 if (error)
                     return reject(error);
                 resolve(results.insertId);

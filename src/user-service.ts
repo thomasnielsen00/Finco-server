@@ -105,8 +105,8 @@ class UserService {
   createUser(full_name: string, email: string, password: string) {
     return new Promise<number>((resolve, reject) => {
       pool.query(
-        "INSERT INTO user SET full_name=?, email=?, password=?, phone_number=? ,risk_willingness=?, savings_from=?, savings_to=?",
-        [full_name, email, password, "Not selected", "Not selected", 0, 0],
+        "INSERT INTO user SET full_name=?, email=?, password=?, phone_number=? ,risk_willingness=?, savings_from=?, savings_to=?, admin=?",
+        [full_name, email, password, "Not selected", "Not selected", 0, 0, 0],
         (error, results: ResultSetHeader) => {
           if (error) return reject(error);
 

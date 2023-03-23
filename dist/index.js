@@ -11,7 +11,9 @@ const cors = require("cors");
 require("dotenv").config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8080;
-app.use(cors());
+app.use(cors({
+    origin: "http:localhost:3000",
+}));
 // Serve client files
 // app.use(express.static(path.join(__dirname, '/../../client/public')));
 app.use("/api", company_router_1.default, user_router_1.default);

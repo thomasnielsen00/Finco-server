@@ -12,7 +12,7 @@ require("dotenv").config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8080;
 app.use(cors({
-    origin: "http:localhost:3000",
+    origin: "https://finco-client.vercel.app",
 }));
 // Serve client files
 // app.use(express.static(path.join(__dirname, '/../../client/public')));

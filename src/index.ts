@@ -8,14 +8,15 @@ require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 8080;
+// app.use(
+//   cors({
+//     origin: "https://finco-client.vercel.app",
+//   })
+// );
+app.use(cors());
 
-//only allows client to use api
-app.use(
-  cors({
-    origin: "https://finco-client.vercel.app",
-  })
-);
-
+// Serve client files
+// app.use(express.static(path.join(__dirname, '/../../client/public')));
 
 app.use("/api", companyRouter, userRouter);
 

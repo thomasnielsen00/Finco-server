@@ -45,15 +45,7 @@ router.get("/users/login/:email/:password", (request, response) => {
 // register new user with bcrypt
 router.post("/users/register", (request, response) => {
   const data = request.body;
-  if (
-    data &&
-    data.password &&
-    data.password.length != 0 &&
-    data.email &&
-    data.email.length != 0 &&
-    data.full_name &&
-    data.full_name.length != 0
-  )
+  if (data.password && data.email && data.full_name)
     userService
       .emailCheck(data.email)
       .then(() => {

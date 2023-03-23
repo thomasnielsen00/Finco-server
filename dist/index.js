@@ -6,10 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const company_router_1 = __importDefault(require("./company-router"));
 const user_router_1 = __importDefault(require("./user-router"));
+const cors = require("cors");
 // import path from 'path';
 require("dotenv").config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8080;
+app.use(cors());
 // Serve client files
 // app.use(express.static(path.join(__dirname, '/../../client/public')));
 app.use("/api", company_router_1.default, user_router_1.default);

@@ -12,16 +12,5 @@
       "src": "/(.*)",
       "dest": "dist/index.js"
     }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
-        }
-      ]
-    }
   ]
 }

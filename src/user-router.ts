@@ -43,9 +43,16 @@ router.get("/users/login/:email/:password", (request, response) => {
 });
 
 // register new user with bcrypt
+// data.hasOwnProperty("full_name") &&
+// data.hasOwnProperty("email") &&
+// data.hasOwnProperty("password")
 router.post("/users/register", (request, response) => {
   const data = request.body;
-  if (data.password && data.email && data.full_name)
+  if (
+    data.hasOwnProperty("full_name") &&
+    data.hasOwnProperty("email") &&
+    data.hasOwnProperty("password")
+  )
     userService
       .emailCheck(data.email)
       .then(() => {

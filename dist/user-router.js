@@ -43,9 +43,14 @@ router.get("/users/login/:email/:password", (request, response) => {
         .catch(() => response.status(500).send("Network error"));
 });
 // register new user with bcrypt
+// data.hasOwnProperty("full_name") &&
+// data.hasOwnProperty("email") &&
+// data.hasOwnProperty("password")
 router.post("/users/register", (request, response) => {
     const data = request.body;
-    if (data.password && data.email && data.full_name)
+    if (data.hasOwnProperty("full_name") &&
+        data.hasOwnProperty("email") &&
+        data.hasOwnProperty("password"))
         user_service_1.default
             .emailCheck(data.email)
             .then(() => {

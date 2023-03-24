@@ -14,6 +14,7 @@ const port = process.env.PORT || 8080;
 //   })
 // );
 app.use(cors());
+app.use(express.json());
 
 // Serve client files
 // app.use(express.static(path.join(__dirname, '/../../client/public')));

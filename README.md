@@ -4,7 +4,7 @@
 
 This server has been developed as a part of our bachelor thesis in Digital Business Development at NTNU.
 The server offers a variety of API endpoints and is connected to our database. For more information about the
-functionality, please check out our client-side. Note that this server is hosted by Vercel. 
+functionality, please check out our client-side. Note that this server is hosted by Vercel.
 
 ## Setup Database Connections
 
@@ -32,9 +32,8 @@ These environment variables will be used in the `/src/mysql-pool.ts` file.
 Install dependencies and start server:
 
 ```sh
-cd server
 npm install
 npm start
 ```
 
-Please contact one of the contributors if you have any questions. You can reach us at [thomaeni@stud.ntnu.no], [bknielse@stud.ntnu.no] or [paaldv@stud.ntnu.no]. 
+Please contact one of the contributors if you have any questions. You can reach us at [thomaeni@stud.ntnu.no], [bknielse@stud.ntnu.no] or [paaldv@stud.ntnu.no].

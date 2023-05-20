@@ -30,7 +30,7 @@ export type CompanyCalculations = {
   future_unleveredFreeCashFlow: [];
   futureDiscount: [];
   presentValueUnleveredFreeCashFlow: [];
-  terminalValue: number; // EBITDAresult i database
+  terminalValue: number; // EBITDAresult in database
   futureDiscount2027: number;
   discountedTerminalValue: number;
   present_value_of_unlevered_FCF: number;

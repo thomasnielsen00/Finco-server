@@ -18,8 +18,6 @@ const port = process.env.PORT || 8080;
 // );
 app.use(cors());
 app.use(express_1.default.json());
-// Serve client files
-// app.use(express.static(path.join(__dirname, '/../../client/public')));
 app.use("/api", company_router_1.default, user_router_1.default);
 app.listen(port, () => {
     return console.log(`Server is listening on ${port}`);

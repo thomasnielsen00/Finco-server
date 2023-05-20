@@ -10,6 +10,7 @@ router.get("/", (_request, response) => {
   response.send("Welcome to the Finco-API");
 });
 
+// Gets all companies
 router.get("/companies", (_request, response) => {
   companyService
     .getAll()
@@ -17,6 +18,7 @@ router.get("/companies", (_request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+// Gets one company with given id
 router.get("/companies/:company_id", (request, response) => {
   const company_id = Number(request.params.company_id);
   companyService
@@ -29,6 +31,7 @@ router.get("/companies/:company_id", (request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+// Gets all company calculations for the admin-page with given id
 router.get("/companycalculations/:company_id", (request, response) => {
   const company_id = Number(request.params.company_id);
   companyService

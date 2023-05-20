@@ -12,13 +12,14 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
  */
 const router = express_1.default.Router();
 exports.salt = bcryptjs_1.default.genSaltSync(10);
-//trenger denne å eksporteres?
+// Gets all users
 router.get("/users", (_request, response) => {
     user_service_1.default
         .getAllUsers()
         .then((rows) => response.send(rows))
         .catch((error) => response.status(500).send(error));
 });
+// Gets user with given id
 router.get("/users/:user_id", (request, response) => {
     const user_id = Number(request.params.user_id);
     user_service_1.default
@@ -26,7 +27,7 @@ router.get("/users/:user_id", (request, response) => {
         .then((user) => user ? response.send(user) : response.status(404).send("User not found"))
         .catch((error) => response.status(500).send(error));
 });
-// login
+// Login with given email and password
 router.get("/users/login/:email/:password", (request, response) => {
     const email = String(request.params.email);
     const password = String(request.params.password);
@@ -43,9 +44,6 @@ router.get("/users/login/:email/:password", (request, response) => {
         .catch(() => response.status(500).send("Network error"));
 });
 // register new user with bcrypt
-// data.hasOwnProperty("full_name") &&
-// data.hasOwnProperty("email") &&
-// data.hasOwnProperty("password")
 router.post("/users/register", (request, response) => {
     const data = request.body;
     if (data.hasOwnProperty("full_name") &&
@@ -108,6 +106,7 @@ router.put("/users/:user_id", (request, response) => {
     else
         response.status(400).send("Propperties are not valid");
 });
+// Deletes user 
 router.delete("/users/:user_id", (request, response) => {
     const user_id = Number(request.params.user_id);
     if (typeof user_id == "number" && user_id != 0) {
@@ -144,6 +143,7 @@ router.get("/users/:user_id/investments/:investment_id", (request, response) => 
         : response.status(404).send("User-investment not found"))
         .catch((error) => response.status(500).send(error));
 });
+// Updates a given users investment with given investment_id
 router.put("/users/:user_id/investments/:investment_id", (request, response) => {
     const user_id = Number(request.params.user_id);
     const investment_id = Number(request.params.investment_id);
@@ -163,12 +163,9 @@ router.put("/users/:user_id/investments/:investment_id", (request, response) => 
         response.status(400).send("Propperties are not valid");
 });
 //A path that contributes to creating a new investment for a given user
-//SKAL DET VÆRE PARANTES ETETR INVESTMENTS HER PÅ POST?
 //--------------------------------------------------------
 router.post("/users/:user_id/investments", (request, response) => {
     const data = request.body;
-    //Hvordan blir det med yield?
-    //Det trengs vel strengt tatt ikke å være nødvendig å pushe inn når et investering lages i utgangspunktet
     if (data &&
         data.amount &&
         data.amount.length != 0 &&
@@ -193,7 +190,7 @@ router.post("/users/:user_id/investments", (request, response) => {
             .status(400)
             .send("Missing task one or more of the following attributes: amount, investment_date, user_id, company_id");
 });
-//Updates a user-investment´s content
+// Deletes a given investment
 router.delete("/users/:user_id/investments/:investment_id", (request, response) => {
     const investment_id = Number(request.params.investment_id);
     if (typeof investment_id == "number" && investment_id != 0) {
@@ -209,6 +206,7 @@ router.delete("/users/:user_id/investments/:investment_id", (request, response) 
 //------------------------------------------------------------------------------------------------------------------
 //           PREFERED-INDUSTRY FOR USER
 //------------------------------------------------------------------------------------------------------------------
+// Gets all prefered industries to given user_id
 router.get("/users/:user_id/industries", (request, response) => {
     const user_id = Number(request.params.user_id);
     user_service_1.default
@@ -216,6 +214,7 @@ router.get("/users/:user_id/industries", (request, response) => {
         .then((rows) => response.send(rows))
         .catch((error) => response.status(500).send(error));
 });
+// Gets one give industry
 router.get("/users/:user_id/industries/:industry_id", (request, response) => {
     const user_id = Number(request.params.user_id);
     const industry_id = Number(request.params.industry_id);
@@ -249,7 +248,6 @@ router.post("/users/:user_id/industries", (request, response) => {
     else
         response.status(400).send("Missing task one or more of attributes");
 });
-//BURDEN DENNE SKRIVES OM SLIK AT MAN KAN SLETTE PÅ BAKGRUNN AV INDUSTRY_NAME?
 //Delete a prefered industry for a given user:
 router.delete("/users/:user_id/industries/:industry_id", (request, response) => {
     const industry_id = Number(request.params.industry_id);

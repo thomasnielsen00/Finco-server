@@ -7,8 +7,8 @@ import bcrypt from "bcryptjs";
  */
 const router = express.Router();
 export const salt = bcrypt.genSaltSync(10);
-//trenger denne å eksporteres?
 
+// Gets all users
 router.get("/users", (_request, response) => {
   userService
     .getAllUsers()
@@ -16,6 +16,7 @@ router.get("/users", (_request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+// Gets user with given id
 router.get("/users/:user_id", (request, response) => {
   const user_id = Number(request.params.user_id);
   userService
@@ -26,7 +27,7 @@ router.get("/users/:user_id", (request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
-// login
+// Login with given email and password
 router.get("/users/login/:email/:password", (request, response) => {
   const email = String(request.params.email);
   const password = String(request.params.password);
@@ -43,9 +44,6 @@ router.get("/users/login/:email/:password", (request, response) => {
 });
 
 // register new user with bcrypt
-// data.hasOwnProperty("full_name") &&
-// data.hasOwnProperty("email") &&
-// data.hasOwnProperty("password")
 router.post("/users/register", (request, response) => {
   const data = request.body;
   if (
@@ -114,6 +112,7 @@ router.put("/users/:user_id", (request, response) => {
   else response.status(400).send("Propperties are not valid");
 });
 
+// Deletes user 
 router.delete("/users/:user_id", (request, response) => {
   const user_id = Number(request.params.user_id);
   if (typeof user_id == "number" && user_id != 0) {
@@ -159,6 +158,7 @@ router.get(
   }
 );
 
+// Updates a given users investment with given investment_id
 router.put(
   "/users/:user_id/investments/:investment_id",
   (request, response) => {
@@ -183,12 +183,9 @@ router.put(
 );
 
 //A path that contributes to creating a new investment for a given user
-//SKAL DET VÆRE PARANTES ETETR INVESTMENTS HER PÅ POST?
 //--------------------------------------------------------
 router.post("/users/:user_id/investments", (request, response) => {
   const data = request.body;
-  //Hvordan blir det med yield?
-  //Det trengs vel strengt tatt ikke å være nødvendig å pushe inn når et investering lages i utgangspunktet
   if (
     data &&
     data.amount &&
@@ -223,8 +220,7 @@ router.post("/users/:user_id/investments", (request, response) => {
       );
 });
 
-//Updates a user-investment´s content
-
+// Deletes a given investment
 router.delete(
   "/users/:user_id/investments/:investment_id",
   (request, response) => {
@@ -244,6 +240,7 @@ router.delete(
 //           PREFERED-INDUSTRY FOR USER
 //------------------------------------------------------------------------------------------------------------------
 
+// Gets all prefered industries to given user_id
 router.get("/users/:user_id/industries", (request, response) => {
   const user_id = Number(request.params.user_id);
   userService
@@ -252,6 +249,7 @@ router.get("/users/:user_id/industries", (request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+// Gets one give industry
 router.get("/users/:user_id/industries/:industry_id", (request, response) => {
   const user_id = Number(request.params.user_id);
   const industry_id = Number(request.params.industry_id);
@@ -270,6 +268,7 @@ router.get("/industries", (_request, response) => {
     .then((rows) => response.send(rows))
     .catch((error) => response.status(500).send(error));
 });
+
 
 router.post("/users/:user_id/industries", (request, response) => {
   const user_id = Number(request.params.user_id);
@@ -290,9 +289,7 @@ router.post("/users/:user_id/industries", (request, response) => {
   else response.status(400).send("Missing task one or more of attributes");
 });
 
-//BURDEN DENNE SKRIVES OM SLIK AT MAN KAN SLETTE PÅ BAKGRUNN AV INDUSTRY_NAME?
 //Delete a prefered industry for a given user:
-
 router.delete(
   "/users/:user_id/industries/:industry_id",
   (request, response) => {

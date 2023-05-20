@@ -4,7 +4,7 @@
 
 This server has been developed as a part of our bachelor thesis in Digital Business Development at NTNU.
 The server offers a variety of API endpoints and is connected to our database. For more information about the
-functionality, please check out our client-side.
+functionality, please check out our client-side. Note that this server is hosted by Vercel. 
 
 ## Setup Database Connections
 

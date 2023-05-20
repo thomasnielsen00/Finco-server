@@ -12,12 +12,14 @@ const router = express_1.default.Router();
 router.get("/", (_request, response) => {
     response.send("Welcome to the Finco-API");
 });
+// Gets all companies
 router.get("/companies", (_request, response) => {
     company_service_1.default
         .getAll()
         .then((rows) => response.send(rows))
         .catch((error) => response.status(500).send(error));
 });
+// Gets one company with given id
 router.get("/companies/:company_id", (request, response) => {
     const company_id = Number(request.params.company_id);
     company_service_1.default
@@ -27,6 +29,7 @@ router.get("/companies/:company_id", (request, response) => {
         : response.status(404).send("Company not found"))
         .catch((error) => response.status(500).send(error));
 });
+// Gets all company calculations for the admin-page with given id
 router.get("/companycalculations/:company_id", (request, response) => {
     const company_id = Number(request.params.company_id);
     company_service_1.default

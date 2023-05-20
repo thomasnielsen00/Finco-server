@@ -1,18 +1,18 @@
-# Server for Finco's investement application
+# Server for Finco's Investment Application
 
-## Project description
+## Project Description
 
 This server has been developed as a part of our bachelor thesis in Digital Business Development at NTNU.
-The server offers a varaity of API-endpoints and i connected to our database. For more information about the
-functionality, please check out our client side.
+The server offers a variety of API endpoints and is connected to our database. For more information about the
+functionality, please check out our client-side.
 
-## Setup database connections
+## Setup Database Connections
 
-### Create your own database
+### Create Your Own Database Connection
 
-You need to create one .env file that will contain the database connection details to your
-database. This file should not be uploaded to your git repository, and have therefore been
-added to `.gitignore`. We have used Clever Cloud as our provider. Please set up your database to match the ER-diagram given in our thesis, and provide the following environment variables in a .env file in the root file:
+You need to create an .env file that contains the database connection details to your
+database. This file should not be uploaded to your git repository and has therefore been
+added to `.gitignore`. We have used Clever Cloud as our provider. Please set up your database to match the ER-diagram given in our thesis and provide the following environment variables in a .env file in the root folder:
 
 `/.env`:
 
@@ -37,4 +37,4 @@ npm install
 npm start
 ```
 
-Please contact one of the contributors if you have any questions.
+Please contact one of the contributors if you have any questions. You can reach us at [thomaeni@stud.ntnu.no], [bknielse@stud.ntnu.no] or [paaldv@stud.ntnu.no]. 
